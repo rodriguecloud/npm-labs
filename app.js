@@ -1,68 +1,36 @@
 /**
- * ============================================================================
- * 🧪 PROJET LABO : Test de la dépendance 'npm-labs'
- * ============================================================================
+ * 🧪 mon-projet-test - app.js
+ * Ce fichier simule l'application d'un développeur qui utilise ta dépendance.
  */
 
-// 1. IMPORTATION DES DÉPENDANCES
-// On importe notre package npm-labs qui se trouve dans le dossier node_modules.
-// Node.js sait automatiquement aller le chercher là-bas.
-//
-// ⚠️ Rappel sécurité : un `require()` exécute immédiatement le code de premier
-// niveau du package importé. Si le package vient d'une source non vérifiée,
-// vérifie sa légitimité (npm audit, nombre de téléchargements, dépôt source)
-// avant de l'exécuter, surtout dans un environnement contenant des secrets.
-const npmLabs = require('npm-labs');
+// 1. IMPORTATION DE LA FONCTION SÉCURITÉ
+// Grâce à la syntaxe de déstructuration { maskToken }, on extrait la fonction 
+// spécifique que notre package 'npm-labs' a mise à disposition (exportée).
+const { maskToken } = require('npm-labs');
 
-// 2. BONNE PRATIQUE SÉCURITÉ : GESTION DES SECRETS
-// RÈGLE D'OR : On n'écrit JAMAIS un secret "en dur" dans le code source.
-// Mauvaise pratique ❌ :
-// const monToken = "npm_A1B2C3D4E5F6...";
-//
-// Bonne pratique ✅ : on le récupère depuis les variables d'environnement,
-// ET on échoue explicitement s'il est absent plutôt que de continuer
-// silencieusement avec une valeur factice.
-const apiToken = process.env.API_TOKEN;
+// 2. RÉCUPÉRATION DU SECRET
+// On récupère le token secret depuis les variables d'environnement (Bonne pratique !).
+// Si aucune variable n'est définie, on utilise une fausse clé par défaut pour le test.
+const monSecretSensible = process.env.API_TOKEN || "npm_secret_token_123456789xyz";
 
-if (!apiToken) {
-    console.error("❌ Erreur : la variable d'environnement API_TOKEN est manquante.");
-    console.error("   Définis-la avant de lancer le script, par exemple :");
-    console.error("   API_TOKEN=xxxx node test-npm-labs.js");
-    process.exit(1);
-}
+console.log("🚀 Démarrage de l'application de démonstration...");
+console.log("-------------------------------------------------------");
 
-// Petite fonction utilitaire pour ne jamais afficher un secret en clair.
-// On ne montre que les 4 derniers caractères, le reste est masqué.
-function maskSecret(secret) {
-    if (secret.length <= 4) return "****";
-    return "*".repeat(secret.length - 4) + secret.slice(-4);
-}
+// ❌ MAUVAISE PRATIQUE DE SÉCURITÉ :
+// Logger un token en clair. Si ce code tourne sur un serveur, la clé privée sera écrite 
+// dans les fichiers de logs de l'entreprise, accessibles à trop de monde (ou à des hackers).
+// console.log("Mon Secret (DANGEREUX) :", monSecretSensible);
 
-// 3. EXÉCUTION DU CODE
-console.log("🚀 Démarrage de l'application de test...");
-console.log("--------------------------------------------------");
 
-try {
-    console.log("Appel de la dépendance npm-labs :");
+// ✅ BONNE PRATIQUE DE SÉCURITÉ (Sensibilisation) :
+// On utilise notre dépendance 'npm-labs' pour nettoyer la donnée avant de l'afficher.
+console.log("[Système] Préparation de l'affichage des logs système...");
 
-    // Selon la façon dont tu as codé npm-labs, cela va exécuter son contenu.
-    // Si c'était une fonction, on ferait : npmLabs.maFonction()
-    //
-    // ⚠️ Attention : afficher tout l'objet exporté peut divulguer des infos
-    // internes si le module exporte plus que prévu. À utiliser uniquement
-    // en contexte de lab/debug, jamais en production.
-    console.log(npmLabs);
+// Appel de la fonction de notre package npm !
+const secretSecurise = maskToken(monSecretSensible);
 
-    console.log("--------------------------------------------------");
-    console.log("✅ Succès : la dépendance a bien été chargée et exécutée !");
-} catch (erreur) {
-    // BONNE PRATIQUE : toujours anticiper que le code externe peut planter.
-    console.error("❌ Erreur lors de l'utilisation de npm-labs :");
-    console.error(erreur.message);
-}
+console.log("\nRésultat de l'analyse par le package 'npm-labs' :");
+console.log(`-> Clé masquée pour les logs : ${secretSecurise}`);
 
-// Affichage éducatif pour le token (uniquement pour le lab)
-// On n'affiche JAMAIS le token en clair, même dans des logs de test :
-// les logs finissent trop souvent dans des historiques, des outils de
-// monitoring ou des captures d'écran partagées par erreur.
-console.log(`(Info sécu) Token chargé (masqué) : ${maskSecret(apiToken)}`);
+console.log("-------------------------------------------------------");
+console.log("✅ Test réussi : La dépendance a traité le secret en toute sécurité !");
