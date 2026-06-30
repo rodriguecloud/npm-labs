@@ -1,0 +1,13 @@
+# --- BONNES PRATIQUES GIT & SÉCURITÉ ---
+
+# 1. On ignore TOUJOURS le dossier node_modules.
+# Il est lourd et chaque dev doit générer le sien via `npm install`.
+node_modules/
+
+# 2. On ignore les fichiers d'environnement (qui contiennent les secrets).
+# C'est ici qu'on mettrait des mots de passe, clés API ou un NPM_TOKEN.
+# Ne JAMAIS commiter ce genre de fichier.
+.env
+
+# 3. On ignore les logs locaux.
+npm-debug.log*
