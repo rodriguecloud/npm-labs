@@ -1,8 +1,8 @@
-# 🧪 Laboratoire d'utilisation npm (mon-projet-test)
+# Labs d'utilisation npm et bonnes pratiques.
 
 > **Projet d'apprentissage** : Ce dépôt est un projet "consommateur" conçu pour tester la dépendance [npm-labs] et comprendre les bonnes pratiques de gestion des packages et de sécurité dans l'écosystème Node.js/npm.
 
-## 🎯 Objectifs pédagogiques
+# Objectifs pédagogiques
 
 Ce projet a pour but de démontrer et d'appliquer plusieurs concepts clés :
 * **L'installation et l'utilisation d'une dépendance externe** (le package `npm-labs`).
@@ -10,7 +10,7 @@ Ce projet a pour but de démontrer et d'appliquer plusieurs concepts clés :
 * **La sécurité des secrets (Tokens, API keys)** en utilisant les variables d'environnement au lieu de les écrire "en dur" dans le code source.
 * **Le rôle du `package-lock.json`** pour garantir des versions identiques entre les développeurs.
 
-## 🚀 Installation
+# Démarrage
 
 1. Clone ce dépôt sur ta machine locale.
 2. Installe les dépendances définies dans le `package-lock.json` :
