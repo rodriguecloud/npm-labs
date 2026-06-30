@@ -1,19 +1,20 @@
-# Labs d'utilisation npm et bonnes pratiques.
+# Labs for npm usage and best practices
 
-> **Projet d'apprentissage** : Ce dépôt est un projet "consommateur" conçu pour tester la dépendance [npm-labs] et comprendre les bonnes pratiques de gestion des packages et de sécurité dans l'écosystème Node.js/npm.
+> **Learning Project**: This repository is a "consumer" project designed to test the [npm-labs] dependency and understand best practices for package management and security in npm.
 
-# Objectifs pédagogiques
+# Learning Objectives
 
-Ce projet a pour but de démontrer et d'appliquer plusieurs concepts clés :
-* **L'installation et l'utilisation d'une dépendance externe** (le package `npm-labs`).
-* **La gestion du fichier `.gitignore`** pour protéger les données sensibles et éviter de surcharger Git (exclusion de `node_modules` et `.env`).
-* **La sécurité des secrets (Tokens, API keys)** en utilisant les variables d'environnement au lieu de les écrire "en dur" dans le code source.
-* **Le rôle du `package-lock.json`** pour garantir des versions identiques entre les développeurs.
+This project aims to demonstrate and apply several key concepts:
+* **Installation and usage of an external dependency** (the `npm-labs` package).
+* **Managing the `.gitignore` file** to protect sensitive data and avoid overloading Git (exclusion of `node_modules` and `.env`).
+* **Security of secrets (Tokens, API keys)** by using environment variables instead of hardcoding them in the source code.
+* **The role of `package-lock.json`** to ensure identical versions between developers.
 
-# Démarrage
+# Getting Started
 
-1. Clone ce dépôt sur ta machine locale.
-2. Installe les dépendances définies dans le `package-lock.json` :
+1. Clone this repository to your local machine.
+2. Install the dependencies defined in the `package-lock.json`:
 
 ```bash
 npm install
+```
