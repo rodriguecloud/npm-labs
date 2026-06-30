@@ -1,36 +1,36 @@
 /**
- * 🧪 mon-projet-test - app.js
- * Ce fichier simule l'application d'un développeur qui utilise ta dépendance.
+ * 🧪 my-test-project - app.js
+ * This file simulates the application of a developer who uses your dependency.
  */
 
-// 1. IMPORTATION DE LA FONCTION SÉCURITÉ
-// Grâce à la syntaxe de déstructuration { maskToken }, on extrait la fonction 
-// spécifique que notre package 'npm-labs' a mise à disposition (exportée).
+// 1. IMPORT SECURITY FUNCTION
+// Thanks to the destructuring syntax { maskToken }, we extract the specific function
+// that our 'npm-labs' package has made available (exported).
 const { maskToken } = require('npm-labs');
 
-// 2. RÉCUPÉRATION DU SECRET
-// On récupère le token secret depuis les variables d'environnement (Bonne pratique !).
-// Si aucune variable n'est définie, on utilise une fausse clé par défaut pour le test.
-const monSecretSensible = process.env.API_TOKEN || "npm_secret_token_123456789xyz";
+// 2. RETRIEVING THE SECRET
+// We retrieve the secret token from environment variables (Good practice!).
+// If no variable is defined, we use a fake key by default for testing.
+const mySecretSensitive = process.env.API_TOKEN || "npm_secret_token_123456789xyz";
 
-console.log("🚀 Démarrage de l'application de démonstration...");
+console.log("🚀 Starting the demonstration application...");
 console.log("-------------------------------------------------------");
 
-// ❌ MAUVAISE PRATIQUE DE SÉCURITÉ :
-// Logger un token en clair. Si ce code tourne sur un serveur, la clé privée sera écrite 
-// dans les fichiers de logs de l'entreprise, accessibles à trop de monde (ou à des hackers).
-// console.log("Mon Secret (DANGEREUX) :", monSecretSensible);
+// ❌ BAD SECURITY PRACTICE:
+// Logging a token in plain text. If this code runs on a server, the private key will be written
+// in the company's log files, accessible to too many people (or hackers).
+// console.log("My Secret (DANGEROUS) :", mySecretSensitive);
 
 
-// ✅ BONNE PRATIQUE DE SÉCURITÉ (Sensibilisation) :
-// On utilise notre dépendance 'npm-labs' pour nettoyer la donnée avant de l'afficher.
-console.log("[Système] Préparation de l'affichage des logs système...");
+// ✅ GOOD SECURITY PRACTICE (Awareness):
+// We use our 'npm-labs' dependency to clean the data before displaying it.
+console.log("[System] Preparing system log display...");
 
-// Appel de la fonction de notre package npm !
-const secretSecurise = maskToken(monSecretSensible);
+// Call the function from our npm package!
+const secureSecret = maskToken(mySecretSensitive);
 
-console.log("\nRésultat de l'analyse par le package 'npm-labs' :");
-console.log(`-> Clé masquée pour les logs : ${secretSecurise}`);
+console.log("\nResult of analysis by the 'npm-labs' package:");
+console.log(`-> Masked key for logs: ${secureSecret}`);
 
 console.log("-------------------------------------------------------");
-console.log("✅ Test réussi : La dépendance a traité le secret en toute sécurité !");
+console.log("✅ Test successful: The dependency processed the secret securely!");
